@@ -35,7 +35,7 @@ class DirectoriesController extends Controller {
     const ctx = this.ctx;
     const { service, request } = ctx;
     const { name, order, page } = request.body;
-    const row = { name, order, page };
+    const row = { name, order, page, pid: 0 };
     if (!name || !page || order === undefined) {
       ctx.body = {
         code: 0,

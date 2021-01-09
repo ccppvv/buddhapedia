@@ -1,3 +1,5 @@
 run/
 logs/
 typings/
+node_modules/
+.travis.yml

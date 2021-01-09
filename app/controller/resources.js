@@ -12,11 +12,11 @@ const PAGE_LIST = [
 class ResourcesController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { page } = ctx.query;
-    if (!page) {
+    let { page, pid } = ctx.query;
+    if (!page || pid === undefined) {
       ctx.body = {
         code: -1,
-        message: 'page必传!',
+        message: 'page、pid必传!',
       };
       return;
     }
@@ -27,19 +27,19 @@ class ResourcesController extends Controller {
       };
       return;
     }
-    const queries = { page };
+    const queries = { page, pid };
     ctx.body = await this.ctx.service.resources.list(queries);
   }
 
   async create() {
     const ctx = this.ctx;
     const { service, request } = ctx;
-    const { page, name, link, order, tip } = request.body;
-    const row = { page, name, link, tip, order };
-    if (!page || !name || !link || order === undefined) {
+    const { page, name, link, order, tip, pid } = request.body;
+    const row = { page, name, link, tip, order, pid };
+    if (!page || !name || !link || order === undefined || pid === undefined) {
       ctx.body = {
         code: 0,
-        message: '参数错误：page/name/link必填！',
+        message: '参数错误：page、name、link、order、pid必填！',
       };
       return;
     }

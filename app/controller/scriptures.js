@@ -12,11 +12,11 @@ const PAGE_LIST = [
 class ScripturesController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { page } = ctx.query;
-    if (!page) {
+    let { page, pid } = ctx.query;
+    if (!page || pid === undefined) {
       ctx.body = {
         code: -1,
-        message: 'page必传!',
+        message: 'page、pid必传!',
       };
       return;
     }
@@ -27,7 +27,7 @@ class ScripturesController extends Controller {
       };
       return;
     }
-    const queries = { page };
+    const queries = { page, pid };
     ctx.body = await this.ctx.service.scriptures.list(queries);
   }
 
@@ -35,6 +35,7 @@ class ScripturesController extends Controller {
     const ctx = this.ctx;
     const { service, request } = ctx;
     const {
+      pid,
       page,
       number,
       section,
@@ -47,6 +48,7 @@ class ScripturesController extends Controller {
       version_link,
     } = request.body;
     const row = {
+      pid,
       page,
       number,
       section,
@@ -59,6 +61,7 @@ class ScripturesController extends Controller {
       version_link,
     };
     if (
+      pid === undefined ||
       !page ||
       !number ||
       !section ||
@@ -70,7 +73,7 @@ class ScripturesController extends Controller {
       ctx.body = {
         code: 0,
         message:
-          '参数错误：page/number/section/page_info/name/part_info/author_info必填！',
+          '参数错误：pid、page、number、section、page_info、name、part_info、author_info必填！',
       };
       return;
     }
