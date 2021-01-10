@@ -34,16 +34,36 @@ class ResourcesController extends Controller {
   async create() {
     const ctx = this.ctx;
     const { service, request } = ctx;
-    const { page, name, link, order, tip, pid } = request.body;
-    const row = { page, name, link, tip, order, pid };
-    if (!page || !name || !link || order === undefined || pid === undefined) {
+    const { resourcesData } = request.body;
+    /*
+     * resourcesData格式(字符串):
+     * pid1,name1,page1,order1,link1,tip1;
+     * pid2,name2,page2,order2,link2,tip2;
+     * ...
+     */
+    let rows = resourcesData.split(/\s*;\s*/g);
+    if (!rows[rows.length - 1].trim()) {
+      // 最后一项如果为空，丢弃
+      rows.pop();
+    }
+    console.log(rows.length)
+    const errRowNumbers = [];
+    rows = rows.map((rowData, index) => {
+      const row = rowData.trim().split(/\s*,\s*/g);
+      if (row[0] === undefined || !row[1] || !row[2] || row[3] === undefined || !row[4] || !PAGE_LIST.includes(row[2])) {
+        errRowNumbers.push(index + 1);
+      }
+      console.log(row[0])
+      return { pid: parseInt(row[0]), name: row[1], page: row[2], order: row[3], link: row[4], tip: row[5] || '' };
+    });
+    if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message: '参数错误：page、name、link、order、pid必填！',
+        message: `第${errRowNumbers.join('、')}行数据错误：pid、name、page、order、link、link必填！`,
       };
       return;
     }
-    ctx.body = await service.resources.add(row);
+    ctx.body = await service.resources.add(rows);
   }
 
   async update() {

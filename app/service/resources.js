@@ -22,9 +22,9 @@ class ResourcesService extends Service {
     }
   }
 
-  async add(row) {
+  async add(rows) {
     try {
-      await this.ctx.model.Resources.create(row);
+      await this.ctx.model.Resources.bulkCreate(rows);
       return {
         code: 0,
         message: 'OK',

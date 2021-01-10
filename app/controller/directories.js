@@ -37,8 +37,8 @@ class DirectoriesController extends Controller {
     const { directoriesData } = request.body;
     /*
      * directoriesData格式(字符串):
-     * name1,page1,order1,pid1;
-     * name2,page2,order2,pid2;
+     * name1,page1,order1;
+     * name2,page2,order2;
      * ...
      */
     let rows = directoriesData.split(/\s*;\s*/g);

@@ -49,7 +49,7 @@ class DivisionsController extends Controller {
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
-      if (row[0] === undefined || !row[1] || !row[2] || !row[3] || !row[4] || !row[5] || !row[6] || !PAGE_LIST.includes(row[2])) {
+      if (row[0] === undefined || !row[1] || !row[2] || row[3] === undefined || !row[4] || !row[5] || !row[6] || !PAGE_LIST.includes(row[2])) {
         errRowNumbers.push(index + 1);
       }
       console.log(row[0])
