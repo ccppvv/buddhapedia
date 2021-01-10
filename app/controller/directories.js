@@ -34,16 +34,34 @@ class DirectoriesController extends Controller {
   async create() {
     const ctx = this.ctx;
     const { service, request } = ctx;
-    const { name, order, page } = request.body;
-    const row = { name, order, page, pid: 0 };
-    if (!name || !page || order === undefined) {
+    const { directoriesData } = request.body;
+    /*
+     * directoriesData格式(字符串):
+     * name1,page1,order1,pid1;
+     * name2,page2,order2,pid2;
+     * ...
+     */
+    let rows = directoriesData.split(/\s*;\s*/g);
+    if (!rows[rows.length - 1].trim()) {
+      // 最后一项如果为空，丢弃
+      rows.pop();
+    }
+    const errRowNumbers = [];
+    rows = rows.map((rowData, index) => {
+      const row = rowData.trim().split(/\s*,\s*/g);
+      if (!row[0] || !row[1] || row[2] === undefined) {
+        errRowNumbers.push(index + 1);
+      }
+      return { name: row[0], page: row[1], order: row[2], pid: 0 };
+    });
+    if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message: '参数错误：name/page/order必填！',
+        message: `第${errRowNumbers.join('、')}行数据错误：name、page、order必填！`,
       };
       return;
     }
-    ctx.body = await service.directories.add(row);
+    ctx.body = await service.directories.add(rows);
   }
 
   async update() {

@@ -22,9 +22,9 @@ class DirectoriesService extends Service {
     }
   }
 
-  async add(row) {
+  async add(rows) {
     try {
-      await this.ctx.model.Directories.create(row);
+      await this.ctx.model.Directories.bulkCreate(rows);
       return {
         code: 0,
         message: 'OK',
