@@ -1,11 +1,11 @@
 'use strict';
 const Service = require('egg').Service;
 
-class ScripturesService extends Service {
+class DivisionsService extends Service {
   async list(where) {
     const ctx = this.ctx;
     try {
-      const items = await ctx.model.Scriptures.findAll({
+      const items = await ctx.model.Divisions.findAll({
         // order: [['order']],
         where,
       });
@@ -22,9 +22,9 @@ class ScripturesService extends Service {
     }
   }
 
-  async add(row) {
+  async add(rows) {
     try {
-      await this.ctx.model.Scriptures.create(row);
+      await this.ctx.model.Divisions.bulkCreate(rows);
       return {
         code: 0,
         message: 'OK',
@@ -39,14 +39,14 @@ class ScripturesService extends Service {
 
   async update(row, where) {
     try {
-      const item = await this.ctx.model.Scriptures.findByPk(where.id);
+      const item = await this.ctx.model.Divisions.findByPk(where.id);
       if (!item) {
         throw new Error('记录不存在!');
       }
       if (!Object.keys(where).length) {
         throw new Error('禁止全库修改!');
       }
-      await this.ctx.model.Scriptures.update(row, { where });
+      await this.ctx.model.Divisions.update(row, { where });
       return {
         code: 0,
         message: 'OK',
@@ -61,7 +61,7 @@ class ScripturesService extends Service {
 
   async delete(row) {
     try {
-      const item = await this.ctx.model.Scriptures.findByPk(row.id);
+      const item = await this.ctx.model.Divisions.findByPk(row.id);
       if (!item) {
         throw new Error('记录不存在!');
       }
@@ -79,4 +79,4 @@ class ScripturesService extends Service {
   }
 }
 
-module.exports = ScripturesService;
+module.exports = DivisionsService;
