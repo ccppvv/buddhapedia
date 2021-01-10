@@ -1,4 +1,3 @@
-/* indent size: 2 */
 'use strict';
 module.exports = app => {
   const DataTypes = app.Sequelize;

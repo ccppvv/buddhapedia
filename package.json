@@ -22,7 +22,8 @@
     "egg-mock": "^3.21.0",
     "egg-sequelize-auto": "^0.1.1",
     "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
+    "eslint-config-egg": "^7.1.0",
+    "prettier": "^2.2.1"
   },
   "engines": {
     "node": ">=10.0.0"
