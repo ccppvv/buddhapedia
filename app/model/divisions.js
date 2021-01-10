@@ -13,6 +13,11 @@ module.exports = app => {
         autoIncrement: true,
         primaryKey: true,
       },
+      pid: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: '0',
+      },
       order: {
         type: DataTypes.INTEGER,
         allowNull: true,
