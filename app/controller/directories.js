@@ -81,21 +81,21 @@ class DirectoriesController extends Controller {
     });
   }
 
-  async destroy() {
-    const ctx = this.ctx;
-    const {
-      service,
-      params: { id },
-    } = ctx;
-    if (!id) {
-      ctx.body = {
-        code: 0,
-        message: '参数错误：id必填！',
-      };
-      return;
-    }
-    ctx.body = await service.directories.delete({ id });
-  }
+  // async destroy() {
+  //   const ctx = this.ctx;
+  //   const {
+  //     service,
+  //     params: { id },
+  //   } = ctx;
+  //   if (!id) {
+  //     ctx.body = {
+  //       code: 0,
+  //       message: '参数错误：id必填！',
+  //     };
+  //     return;
+  //   }
+  //   ctx.body = await service.directories.delete({ id });
+  // }
 }
 
 module.exports = DirectoriesController;
