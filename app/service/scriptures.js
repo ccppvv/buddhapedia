@@ -22,9 +22,9 @@ class ScripturesService extends Service {
     }
   }
 
-  async add(row) {
+  async add(rows) {
     try {
-      await this.ctx.model.Scriptures.create(row);
+      await this.ctx.model.Scriptures.bulkCreate(rows);
       return {
         code: 0,
         message: 'OK',

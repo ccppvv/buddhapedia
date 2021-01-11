@@ -32,6 +32,11 @@ module.exports = app => {
         allowNull: false,
         defaultValue: '',
       },
+      page_info: {
+        type: DataTypes.STRING(128),
+        allowNull: false,
+        defaultValue: '',
+      },
       name: {
         type: DataTypes.STRING(128),
         allowNull: false,

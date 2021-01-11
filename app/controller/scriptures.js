@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const Controller = require('egg').Controller;
+const Controller = require("egg").Controller;
 const PAGE_LIST = [
-  'tibetan-scriptures',
-  'outide-tibetan-scriptures',
-  'buddhism-dictionary',
-  'buddhist-symbolism',
-  'language-learn',
+  "tibetan-scriptures",
+  "outide-tibetan-scriptures",
+  "buddhism-dictionary",
+  "buddhist-symbolism",
+  "language-learn",
 ];
 
 class ScripturesController extends Controller {
@@ -16,14 +16,14 @@ class ScripturesController extends Controller {
     if (!page || pid === undefined) {
       ctx.body = {
         code: -1,
-        message: 'page、pid必传!',
+        message: "page、pid必传!",
       };
       return;
     }
     if (!PAGE_LIST.includes(page)) {
       ctx.body = {
         code: -1,
-        message: '不支持的page类型!',
+        message: "不支持的page类型!",
       };
       return;
     }
@@ -34,57 +34,60 @@ class ScripturesController extends Controller {
   async create() {
     const ctx = this.ctx;
     const { service, request } = ctx;
-    const {
-      pid,
-      page,
-      number,
-      section,
-      page_info,
-      name,
-      link,
-      part_info,
-      author_info,
-      version_name,
-      version_link,
-    } = request.body;
-    const row = {
-      pid,
-      page,
-      number,
-      section,
-      page_info,
-      name,
-      link,
-      part_info,
-      author_info,
-      version_name,
-      version_link,
-    };
-    if (
-      pid === undefined ||
-      !page ||
-      !number ||
-      !section ||
-      !page_info ||
-      !name ||
-      !part_info ||
-      !author_info
-    ) {
+    const { scripturesData } = request.body;
+    /*
+     *  scripturesData格式(字符串):
+     * pid1,name1,page1,number1,section1,page_info1,link1,part_info1,author_info1,version_name1,version_link1;
+     * pid2,name2,page2,number2,section2,page_info2,link2,part_info2,author_info2,version_name2,version_link2;
+     * ...
+     */
+    let rows = scripturesData.split(/\s*;\s*/g);
+    if (!rows[rows.length - 1].trim()) {
+      // 最后一项如果为空，丢弃
+      rows.pop();
+    }
+    console.log(rows.length);
+    const errRowNumbers = [];
+    rows = rows.map((rowData, index) => {
+      const row = rowData.trim().split(/\s*,\s*/g);
+      if (
+        row[0] === undefined ||
+        !row[1] ||
+        !row[2] ||
+        !row[3] ||
+        !row[4] ||
+        !row[5] ||
+        !row[6] ||
+        !row[7] ||
+        !row[8] ||
+        !PAGE_LIST.includes(row[2])
+      ) {
+        errRowNumbers.push(index + 1);
+      }
+      return {
+        pid: parseInt(row[0]),
+        name: row[1],
+        page: row[2],
+        number: row[3],
+        section: row[4],
+        page_info: row[5],
+        link: row[6],
+        part_info: row[7],
+        author_info: row[8],
+        version_name: row[9] || "",
+        version_link: row[10] || "",
+      };
+    });
+    if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message:
-          '参数错误：pid、page、number、section、page_info、name、part_info、author_info必填！',
+        message: `第${errRowNumbers.join(
+          "、"
+        )}行数据错误：pid、name、page、number、section、page_info、link、part_info、author_info必填！`,
       };
       return;
     }
-    if (!PAGE_LIST.includes(page)) {
-      ctx.body = {
-        code: -1,
-        message: '不支持的page类型!',
-      };
-      return;
-    }
-    ctx.body = await service.scriptures.add(row);
+    ctx.body = await service.scriptures.add(rows);
   }
 
   async update() {
@@ -98,7 +101,7 @@ class ScripturesController extends Controller {
     if (!body.page) {
       ctx.body = {
         code: 0,
-        message: '参数错误：page必填！',
+        message: "参数错误：page必填！",
       };
       return;
     }
