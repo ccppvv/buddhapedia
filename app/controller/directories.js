@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const PAGE_LIST = [
   'tibetan-scriptures',
-  'outide-tibetan-scriptures',
+  'outside-tibetan-scriptures',
   'buddhism-dictionary',
   'buddhist-symbolism',
   'language-learn',

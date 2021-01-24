@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const PAGE_LIST = [
   'tibetan-scriptures',
-  'outide-tibetan-scriptures',
+  'outside-tibetan-scriptures',
   'buddhism-dictionary',
   'buddhist-symbolism',
   'language-learn',
@@ -50,16 +50,16 @@ class ResourcesController extends Controller {
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
-      if (row[0] === undefined || !row[1] || !row[2] || row[3] === undefined || !row[4] || !PAGE_LIST.includes(row[2])) {
+      if (!row[0] || row[1] === undefined || !row[2] || !row[3] || !PAGE_LIST.includes(row[0])) {
         errRowNumbers.push(index + 1);
       }
       console.log(row[0])
-      return { pid: parseInt(row[0]), name: row[1], page: row[2], order: row[3], link: row[4], tip: row[5] || '' };
+      return { pid: parseInt(row[1]), name: row[3], page: row[0], order: index, link: row[2], tip: row[4] || '' };
     });
     if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message: `第${errRowNumbers.join('、')}行数据错误：pid、name、page、order、link、link必填！`,
+        message: `第${errRowNumbers.join('、')}行数据错误：page、pid、name、link必填！`,
       };
       return;
     }

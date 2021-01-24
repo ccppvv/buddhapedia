@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const PAGE_LIST = [
   'tibetan-scriptures',
-  'outide-tibetan-scriptures',
+  'outside-tibetan-scriptures',
   'buddhism-dictionary',
   'buddhist-symbolism',
   'language-learn',
@@ -37,8 +37,8 @@ class DivisionsController extends Controller {
     const { divisionsData } = request.body;
     /*
      * divisionsData格式(字符串):
-     * pid1,name1,page1,order1,part1,range1,link1;
-     * pid2,name2,page2,order2,part2,range2,link2;
+     * pid1,name1,page1,order1,part1,range1;
+     * pid2,name2,page2,order2,part2,range2;
      * ...
      */
     let rows = divisionsData.split(/\s*;\s*/g);
@@ -49,16 +49,16 @@ class DivisionsController extends Controller {
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
-      if (row[0] === undefined || !row[1] || !row[2] || row[3] === undefined || !row[4] || !row[5] || !row[6] || !PAGE_LIST.includes(row[2])) {
+      if (row[0] === undefined || !row[1] || !row[2] || row[3] === undefined || !PAGE_LIST.includes(row[2])) {
         errRowNumbers.push(index + 1);
       }
       console.log(row[0])
-      return { pid: parseInt(row[0]), name: row[1], page: row[2], order: row[3], part: row[4], range: row[5], link: row[6] };
+      return { pid: parseInt(row[0]), name: row[1], page: row[2], order: row[3], part: row[4], range: row[5], link: '' };
     });
     if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message: `第${errRowNumbers.join('、')}行数据错误：pid、name、page、order、part、range、link必填！`,
+        message: `第${errRowNumbers.join('、')}行数据错误：pid、name、page、order必填！`,
       };
       return;
     }

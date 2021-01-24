@@ -46,6 +46,11 @@ module.exports = app => {
         defaultValue: '',
         allowNull: true,
       },
+      resource_type: {
+        type: DataTypes.STRING(32),
+        defaultValue: '',
+        allowNull: false,
+      }
     },
     {
       tableName: 'scripture_divisions',

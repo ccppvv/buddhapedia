@@ -31,6 +31,11 @@ module.exports = app => {
         defaultValue: '',
         allowNull: false,
       },
+      resource_type: {
+        type: DataTypes.STRING(32),
+        defaultValue: '',
+        allowNull: false,
+      }
     },
     {
       tableName: 'scripture_directories',

@@ -6,7 +6,7 @@ class DirectoriesService extends Service {
     const ctx = this.ctx;
     try {
       const items = await ctx.model.Directories.findAll({
-        order: [['order', 'desc']],
+        order: [['order']],
         where,
       });
       return {
