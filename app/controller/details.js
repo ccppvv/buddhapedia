@@ -7,16 +7,22 @@ const PAGE_LIST = [
   'buddhism-dictionary',
   'buddhist-symbolism',
   'language-learn',
+  'ftp-download',
 ];
 
-class ResourcesController extends Controller {
+const TYPE_LIST = [
+  'speech',
+  'media',
+  'record'
+];
+class DetailsController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { page, pid } = ctx.query;
-    if (!page || pid === undefined) {
+    let { page, type } = ctx.query;
+    if (!page || !type)  {
       ctx.body = {
         code: -1,
-        message: 'page、pid必传!',
+        message: 'page、type必传!',
       };
       return;
     }
@@ -27,52 +33,64 @@ class ResourcesController extends Controller {
       };
       return;
     }
-    const queries = { page, pid };
-    ctx.body = await this.ctx.service.resources.list(queries);
+    if (!TYPE_LIST.includes(type)) {
+      ctx.body = {
+        code: -1,
+        message: '不支持的type类型!',
+      };
+      return;
+    }
+    const queries = { page, type };
+    ctx.body = await this.ctx.service.details.list(queries);
   }
 
   async create() {
     const ctx = this.ctx;
     const { service, request } = ctx;
-    const { resourcesData } = request.body;
+    const { detailsData } = request.body;
     /*
-     * resourcesData格式(字符串):
-     * page,pid1,link1,name1,tip1;
-     * page,pid2,link2,name2,tip2;
-     * ...
+     * detailsData格式(字符串):
+     * order,type,page,from,content;
      */
-    let rows = resourcesData.split(/\s*;\s*/g);
+    let rows = detailsData.split(/\s*;\s*/g);
     if (!rows[rows.length - 1].trim()) {
       // 最后一项如果为空，丢弃
       rows.pop();
     }
-    console.log(rows.length)
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
-      if (!row[0] || row[1] === undefined || !row[2] || !row[3] || !PAGE_LIST.includes(row[0])) {
+      if (!row[0] || !row[1] || !row[2] || !row[3] || !row[4]) {
         errRowNumbers.push(index + 1);
       }
-      console.log(row[0])
-      return { pid: parseInt(row[1]), name: row[3], page: row[0], order: index, link: row[2], tip: row[4] || '' };
+      return { order: row[0], type: row[1], page: row[2], from: row[3], content: row[4] };
     });
     if (errRowNumbers.length) {
       ctx.body = {
         code: 0,
-        message: `第${errRowNumbers.join('、')}行数据错误：page、pid、name、link必填！`,
+        message: `第${errRowNumbers.join('、')}行数据错误：name、page、order必填！`,
       };
       return;
     }
-    ctx.body = await service.resources.add(rows);
+    ctx.body = await service.details.add(rows);
   }
 
   async update() {
     const ctx = this.ctx;
     const {
       service,
-      request: { body },
+      request: {
+        body: { order, name },
+      },
       params: { id },
     } = ctx;
+    const row = { order, name };
+    if (row.order === undefined) {
+      delete row.order;
+    }
+    if (row.name === undefined) {
+      delete row.name;
+    }
     if (!id) {
       ctx.body = {
         code: 0,
@@ -80,14 +98,14 @@ class ResourcesController extends Controller {
       };
       return;
     }
-    ctx.body = await service.resources.update(body, { id });
+    ctx.body = await service.details.update(row, { id });
   }
 
   async show() {
     const ctx = this.ctx;
     const { service, params } = ctx;
     const { id } = params;
-    ctx.body = await service.resources.findOne({
+    ctx.body = await service.details.findOne({
       where: { id },
     });
   }
@@ -105,8 +123,8 @@ class ResourcesController extends Controller {
   //     };
   //     return;
   //   }
-  //   ctx.body = await service.resources.delete({ id });
+  //   ctx.body = await service.details.delete({ id });
   // }
 }
 
-module.exports = ResourcesController;
+module.exports = DetailsController;

@@ -1,0 +1,48 @@
+1,speech,ftp-download,郑石岩老师(002zsy),《01》临终关怀的真谛 (开示演讲，共 4 个文件，合计 12.498 MB ); 2,speech,ftp-download,郑石岩老师(002zsy),《02》杂阿含经 (佛教经论，共 64 个文件，合计 286.298 MB ); 3,speech,ftp-download,郑石岩老师(002zsy),《03》维摩诘所说经 (佛教经论，共 60 个文件，合计 292.409 MB ); 4,speech,ftp-download,郑石岩老师(002zsy),《04》佛法与生活系列 (初机佛学，共 96个文件，合计 465.133 MB ); 5,speech,ftp-download,郑石岩老师(002zsy),《05》观无量寿佛经 (净土，共 10 个文件，合计 45.805 MB ); 6,speech,ftp-download,郑石岩老师(002zsy),《06》六祖坛经 ( 禅宗，共 91 个文件，合计 408.428 MB ); 7,speech,ftp-download,郑石岩老师(002zsy),《07》楞伽阿跋多罗宝经(禅宗，共 66 个文件，合计 299.721 MB ); 8,speech,ftp-download,郑石岩老师(002zsy),《08》金刚经(佛教经论，共68个文件，合计319 MB );
+1,speech,ftp-download,妙境法师（003mj),《01》 身心如何安住(正觉精舍)(开示演讲， 共 4 个文件，合计 14.300 MB ); 2,speech,ftp-download,妙境法师（003mj),《02》 如何得解脱入不思议境界 (开示演讲，共 2 个文件， 合计 9.121 MB ); 3,speech,ftp-download,妙境法师（003mj),《03》 这条路怎么走-修行之道 (开示演讲，共 3 个文 件，合计 13.892 MB ); 4,speech,ftp-download,妙境法师（003mj),《04》 六妙门 (开示演讲，共 4 个文件，合计 11.301 MB ); 5,speech,ftp-download,妙境法师（003mj),《05》 佛说八大人觉经 (佛教经论，共 4 个文件， 合计 17.872 MB ); 6,speech,ftp-download,妙境法师（003mj),《06》 四念住 (基本教理，共 20 个文件，96.517 MB ); 7,speech,ftp-download,妙境法师（003mj),《07》 不净观 (基本教理，共 8 个文件，合计 43.261 MB ); 8,speech,ftp-download,妙境法师（003mj),《08》 地持菩萨戒本(新本福严佛学院)(戒律，共 12 个文 件，合计 61.147 MB ); 9,speech,ftp-download,妙境法师（003mj),《09》 西方发愿文(台北.普贤中医诊所) (戒律，共 6 个文 件，合计 21.869 MB 。); 10,speech,ftp-download,妙境法师（003mj),《10》 往生论(台中.慈明寺) (戒律，共 13 个文件， 合计 62.670 MB ); 11,speech,ftp-download,妙境法师（003mj),《11》 如何照顾自己的心灵(台北市)(禅宗，共 3 个文件， 合计 10.951 MB ); 12,speech,ftp-download,妙境法师（003mj),《12》 止观大意 (法华·天台，共 25 个文件， 合计 110.359 MB ); 13,speech,ftp-download,妙境法师（003mj),《13》法华经普门品(新加坡)(法华·天台，共 61 个文 件，合计 429.416 MB ); 14,speech,ftp-download,妙境法师（003mj),《14》 妙法莲华经(埔里.正觉精舍) (法华·天台， 共 248 个文件，合计 1.729 GB ); 15,speech,ftp-download,妙境法师（003mj),《15》 瑜伽师地论(美国法云寺) (共 9个子目录， 合计 5GB，2005年7月更新为音质好的录音。 );
+1,speech,ftp-download,于凌波(004ylb),《01》身心如何安住(正觉精舍)(开示演讲，共 4 个文件，合计 14.300 MB )
+1,speech,ftp-download,梦参法师(005mc),《01》佛法与日常生活的关系 (开示演讲，共 2 个文件， 合计 12.151 MB ); 2,speech,ftp-download,梦参法师(005mc),《02》修行 (开示演讲，共 9 个文件，合计 12.151 MB ); 3,speech,ftp-download,梦参法师(005mc),《03》心经讲述 (开示演讲，共4个文件，合计 12.151 MB );
+1,speech,ftp-download,达理法师(006dl),《01》八宗纲要 (基本教理,共10个文件，合计45.652 MB );
+1,speech,ftp-download,净界法师(007jj),《01》佛法修学概要 (基本教理，共 67 个文件， 合计 356.914 MB ); 2,speech,ftp-download,净界法师(007jj),《02》唯识学概要 (唯识，共30个文件，合计 155.948 MB ); 3,speech,ftp-download,净界法师(007jj),《03》教观纲宗科释 (法华·天台，共 34 个文件， 合计 170.066 MB );
+1,speech,ftp-download,界诠法师(008jq),《01》佛说法灭尽经 (佛教经论，共 6 个文件，合计 28.613 MB )
+1,speech,ftp-download,慈诚罗珠仁波切(009cclz),《01》入菩萨行论-智慧品 (佛教经论，共 10 个文件，合计 51.369 MB ); 2,speech,ftp-download,慈诚罗珠仁波切(009cclz),《02》宝性论-第四金刚句 (佛教经论，共 4 个文件，合计 19.570 MB );
+1,speech,ftp-download,道证法师（010dz),《01》 毛毛虫变蝴蝶 (开示演讲，共71个文件，合计155MB )
+1,speech,ftp-download,净空法师（011jk),《01》 普贤行愿品 (开示演讲，共39个文件，合计192 MB )
+1,speech,ftp-download,忏云法师（012cy),《01》佛七开示 (开示演讲，共 2 个文件，合计 7.53 MB); 2,speech,ftp-download,忏云法师（012cy),《02》大势至菩萨念佛圆通章 (佛教经论，共 4 个文件，合计 17.1 MB );
+1,speech,ftp-download,廖诚麟（013LCL),《01》唯识三十颂 (唯识，共34个文件，合计 204.544 MB )
+1,speech,ftp-download,日常法师（014rc),《01》菩提道次第广论 (佛教经论，共 320 个文件，合计 1110MB ); 2,speech,ftp-download,日常法师（014rc),《02》念佛法要 (净土，共 10 个文件，合计 47.974 MB ); 3,speech,ftp-download,日常法师（014rc),《03》利器之轮 (共 40 个文件，合计 153 MB ); 4,speech,ftp-download,日常法师（014rc),《04》第二次讲广论 (共146个MP3文件，合计 502 MB );
+1,speech,ftp-download,慧律法师(015hl),《01》罪大恶极莫过口业（共5个文件，13M，台语）; 2,speech,ftp-download,慧律法师(015hl),《02》什么是佛法（共17个文件，42M）; 3,speech,ftp-download,慧律法师(015hl),《03》学佛行仪（共12个文件，30M）; 4,speech,ftp-download,慧律法师(015hl),《04》心经讲座（共14个视频RM文件，684M）;
+1,speech,ftp-download,体方法师(016TiFang),《1》般若波罗密多心经讲记（27个文件，171M）; 2,speech,ftp-download,体方法师(016TiFang),《2》中观今论（60个文件，384M）; 3,speech,ftp-download,体方法师(016TiFang),《3》解脱之道——四圣谛与缘起与大乘不共慧（81个文件，287M）; 4,speech,ftp-download,体方法师(016TiFang),《4》金刚经讲记（36个文件，231M）; 5,speech,ftp-download,体方法师(016TiFang),《5》契理契机的人间佛教（26个文件，167M）; 6,speech,ftp-download,体方法师(016TiFang),《6》性空学探源（29个文件，192M）; 7,speech,ftp-download,体方法师(016TiFang),《7》《杂阿含经》选集专题讲记（471个文件，1.07G）;
+1,speech,ftp-download,黄念祖老师（017hnz),《01》无量寿经讲义(北京) (净土，共 241 个文件，合计1620 MB ); 2,speech,ftp-download,黄念祖老师（017hnz),《02》无量寿经讲义-四十八大愿(北京) (净土，共20个文件，合计 67.583 MB ); 3,speech,ftp-download,黄念祖老师（017hnz),《03》无量寿经大义 (净土，共24个文件，合计 78.900 MB); 4,speech,ftp-download,黄念祖老师（017hnz),《04》净土资粮 (净土，共 8 个文件，合计 150 MB ); 5,speech,ftp-download,黄念祖老师（017hnz),《05》心经浅说 (净土，共 2 个文件，合计 55 MB ); 6,speech,ftp-download,黄念祖老师（017hnz),《06》洗涤污垢，显明清白 (净土，共2个文件，合计45MB); 7,speech,ftp-download,黄念祖老师（017hnz),《07》往生正因 (净土，共 2 个文件，合计 26 MB ); 8,speech,ftp-download,黄念祖老师（017hnz),《08》十念必生 (净土，共 1 个文件，合计 28 MB ); 9,speech,ftp-download,黄念祖老师（017hnz),《09》华严念佛三味论 (净土，共7个文件，合计 156 MB); 10,speech,ftp-download,黄念祖老师（017hnz),《10》大教缘起 (净土，共 1 个文件，合计 26 MB ); 11,speech,ftp-download,黄念祖老师（017hnz),《11》金刚经的精神 (净土，共 2 个文件，合计 30 MB ); 12,speech,ftp-download,黄念祖老师（017hnz),《12》角虎集 (净土，共 2 个文件，合计 45 MB ); 13,speech,ftp-download,黄念祖老师（017hnz),《13》净修捷要 (净土，共 9 个文件，合计 233 MB ); 14,speech,ftp-download,黄念祖老师（017hnz),《14》净语三偈 (净土，共 1 个文件，合计 24 MB ); 15,speech,ftp-download,黄念祖老师（017hnz),《15》净宗心要 (净土，共 1 个文件，合计 27 MB ); 16,speech,ftp-download,黄念祖老师（017hnz),《16》弥陀愿王核心 (净土，共 2 个文件，合计 36 MB ); 17,speech,ftp-download,黄念祖老师（017hnz),《17》佛教的大光明与大安乐 (净土，共 3 个文件， 合计 52 MB ); 18,speech,ftp-download,黄念祖老师（017hnz),《18》无量寿到金钢经 (净土，共 4 个文件，合计 94 MB); 19,speech,ftp-download,黄念祖老师（017hnz),《19》耳根圆通 (净土，共 2 个文件，合计 10 MB);
+1,speech,ftp-download,礶常法师(021gc),《01》持戒念佛 (戒律，共 20 个文件，合计 105.968 MB)
+1,speech,ftp-download,简丰文(022jfw),《01》达磨四行观 (禅宗，共14个文件，合计 71.260 MB);2,speech,ftp-download,简丰文(022jfw),《02》达磨血脉论 (禅宗，共30个文件，合计 162.497 MB)
+1,speech,ftp-download,南怀瑾（025nhj),《01》金刚经 (禅宗，共 21 个文件，合计 1350 MB ); 2,speech,ftp-download,南怀瑾（025nhj),《02》南禅七日 (禅宗，共 40 个文件，合计 3890 MB );
+1,speech,ftp-download,索达吉堪布（026sdj),《01》妙法宝库17种，显密宝库19种(文字资料); 2,speech,ftp-download,索达吉堪布（026sdj),《01》密宗断惑论 ( 18 个文件，合计 473 MB，文字资料); 3,speech,ftp-download,索达吉堪布（026sdj),《02》俱舍论释（160个文件，1840M，音频资料）; 4,speech,ftp-download,索达吉堪布（026sdj),《03》中论（14个文件，1264M，音频资料）; 5,speech,ftp-download,索达吉堪布（026sdj),《04》三戒论（102个文件，677M，音频资料）; 6,speech,ftp-download,索达吉堪布（026sdj),《05》定解宝灯论（61个文件，576M，音频资料）; 7,speech,ftp-download,索达吉堪布（026sdj),《06》开启修心门扉（55个文件，428M，音频资料）; 8,speech,ftp-download,索达吉堪布（026sdj),《07》净土教言（8个文件，180M，音频资料）; 9,speech,ftp-download,索达吉堪布（026sdj),《08》入菩萨行论（陆续讲解中，音频资料）;
+1,speech,ftp-download,南山律（nanshanlv),日常法师、天因法师、道海法师讲，（4个目录，1.3G）
+1,media,ftp-download,寂度和尚与五台山,共 1 个文件，112 MB
+1,media,ftp-download,藏族文化大观,共 1 个文件，99 MB
+1,media,ftp-download,藏族人与佛教,共 1 个文件，96 MB
+1,media,ftp-download,慈悲呼声,共 1个文件，55MB
+1,media,ftp-download,西藏度亡经,共 2个文件，213MB
+1,media,ftp-download,无怙众生,共 1个文件，137MB
+1,media,ftp-download,大悲咒, 共 1个文件，46MB
+1,media,ftp-download,大宝法王传奇（第一版）,共 2个文件，213MB
+1,media,ftp-download,大宝法王传奇（第二版）,共2个文件，190MB
+1,media,ftp-download,了凡四训,共 2个文件，219MB
+1,media,ftp-download,苦行、自性、佛法精要,净空法师开示，共1个文件，48MB
+1,media,ftp-download,成佛之道,净空法师开示，共2个文件，101MB
+1,media,ftp-download,人人皆可成圣成贤,净空法师开示，共1个文件，234MB
+1,media,ftp-download,唤醒自觉，激发正思,净空法师开示，共2个文件，105MB
+1,media,ftp-download,临终切要,慧律法师讲解，共4个文件，276MB
+1,media,ftp-download,清定上师开光大法会,共2个文件，184MB
+1,media,ftp-download,中国佛教,共1个文件，151MB
+1,media,ftp-download,元音老人讲法开示（拈花录成套资料）,yuanyin目录下，12个文件夹，114个文件（来源网站：www.yinxinzong.net）; 2,media,ftp-download,元音老人讲法开示（拈花录成套资料）,禅净密和心中心法、论佛教八大宗，4个文件; 3,media,ftp-download,元音老人讲法开示（拈花录成套资料）,心经抉隐，4个文件; 4,media,ftp-download,元音老人讲法开示（拈花录成套资料）,中有听闻教授解脱密法导讲，15个文件; 5,media,ftp-download,元音老人讲法开示（拈花录成套资料）,浅析大愚法师《解脱歌》，4个文件; 6,media,ftp-download,元音老人讲法开示（拈花录成套资料）,海口亲传咒语及成佛心要，1个文件; 7,media,ftp-download,元音老人讲法开示（拈花录成套资料）,耳根圆通法门，1个文件; 8,media,ftp-download,元音老人讲法开示（拈花录成套资料）,元音老人讲法开示（拈花录成套资料），在上海寓所的随缘开示，28个文件; 9,media,ftp-download,元音老人讲法开示（拈花录成套资料）,在济南开示，9个文件; 10,media,ftp-download,元音老人讲法开示（拈花录成套资料）,在吉林开示和镇江开示，4个文件; 11,media,ftp-download,元音老人讲法开示（拈花录成套资料）,老人荼毗录像，3个文件; 12,media,ftp-download,元音老人讲法开示（拈花录成套资料）,大德谈心密，6个文件; 13,media,ftp-download,元音老人讲法开示（拈花录成套资料）,老人念诵的其它咒音14种; 14,media,ftp-download,元音老人讲法开示（拈花录成套资料）,老人预示2000年往生的录音，1个文件;
+1,media,ftp-download,玄奘西游记,复旦大学钱文忠教授在CCTV10百家讲坛讲述，36个文件
+1,record,ftp-download,夕阳山外山,纪念弘一法师诞辰120周年唱片
+1,record,ftp-download,遥唤根本上师-藏咒精选二,堪布贝玛千贝仁波切唱诵，合计21.5MB
+1,record,ftp-download,Hope For Enlightenment,来自不丹的Lama Gyurme 唱，40MB
+1,record,ftp-download,Rain of Blessings,来自不丹的Lama Gyurme 唱，43.5MB
+1,record,ftp-download,Karmapa"噶玛巴",1996发行的关于大宝法王的第一张专集，录入了十六世噶玛巴的声音
+1,record,ftp-download,sacred buddha'庄严的佛陀',1998发行的关于大宝法王的第二张专集
+1,record,ftp-download,曼陀罗'MANDALA',日本音乐大师喜多修(OSAMU KITAJIMA)创作
+1,record,ftp-download,道禅'Zen breakfast',德国音乐大师KARUNESH创作
