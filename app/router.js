@@ -17,4 +17,6 @@ module.exports = app => {
   router.resources('scriptures', '/api/scriptures', controller.scriptures);
   // 详情信息
   router.resources('details', '/api/details', controller.details);
+  // 描述信息
+  router.resources('descriptions', '/api/descriptions', controller.descriptions);
 };
