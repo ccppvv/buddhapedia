@@ -47,7 +47,6 @@ class ScripturesController extends Controller {
       // 最后一项如果为空，丢弃
       rows.pop();
     }
-    console.log(rows.length);
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
@@ -59,10 +58,11 @@ class ScripturesController extends Controller {
         !row[3] ||
         !row[4] ||
         !row[5] ||
-        !row[7] ||
-        !row[8] ||
+        // !row[7] ||
+        // !row[8] ||
         !PAGE_LIST.includes(row[0])
       ) {
+        console.log(rowData);
         errRowNumbers.push(index + 1);
       }
       return {
@@ -84,7 +84,7 @@ class ScripturesController extends Controller {
         code: 0,
         message: `第${errRowNumbers.join(
           "、"
-        )}行数据错误：pid、name、page、number、section、page_info、link、part_info、author_info必填！`,
+        )}行数据错误：pid、name、page、number、section、page_info、link必填！`,
       };
       return;
     }

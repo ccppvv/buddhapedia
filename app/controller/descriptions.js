@@ -12,21 +12,24 @@ const PAGE_LIST = [
 const RESOURCE_LIST = [
   'directories',
   'divisions',
+  'details',
+  'resources',
+  'scriptures'
 ];
 const Controller = require("egg").Controller;
 
 class DescriptionsController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { page, pid } = ctx.query;
-    if (!page || pid === undefined) {
+    let { page, pid, resource_type } = ctx.query;
+    if (!page || pid === undefined || !resource_type) {
       ctx.body = {
         code: -1,
-        message: "page、pid必传!",
+        message: "page、pid、resource_type必传!",
       };
       return;
     }
-    const queries = { page, pid };
+    const queries = { page, pid, resource_type };
     ctx.body = await this.ctx.service.descriptions.findOne(queries);
   }
 
