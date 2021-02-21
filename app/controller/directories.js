@@ -80,6 +80,13 @@ class DirectoriesController extends Controller {
     if (row.name === undefined) {
       delete row.name;
     }
+    if (!Object.keys(row).length) {
+      ctx.body = {
+        code: 0,
+        message: '参数错误：order/name字段必须至少有一项非空！',
+      };
+      return;
+    }
     if (!id) {
       ctx.body = {
         code: 0,
@@ -99,21 +106,21 @@ class DirectoriesController extends Controller {
     });
   }
 
-  // async destroy() {
-  //   const ctx = this.ctx;
-  //   const {
-  //     service,
-  //     params: { id },
-  //   } = ctx;
-  //   if (!id) {
-  //     ctx.body = {
-  //       code: 0,
-  //       message: '参数错误：id必填！',
-  //     };
-  //     return;
-  //   }
-  //   ctx.body = await service.directories.delete({ id });
-  // }
+  async destroy() {
+    const ctx = this.ctx;
+    const {
+      service,
+      params: { id },
+    } = ctx;
+    if (!id) {
+      ctx.body = {
+        code: 0,
+        message: '参数错误：id必填！',
+      };
+      return;
+    }
+    ctx.body = await service.directories.delete({ id });
+  }
 }
 
 module.exports = DirectoriesController;
