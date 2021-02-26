@@ -70,11 +70,11 @@ class DirectoriesController extends Controller {
     const {
       service,
       request: {
-        body: { order, name },
+        body: { order, name, resource_type },
       },
       params: { id },
     } = ctx;
-    const row = { order, name };
+    const row = { order, name, resource_type };
     if (row.order === undefined) {
       delete row.order;
     }
