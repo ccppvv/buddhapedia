@@ -8,6 +8,9 @@ Buddhism Wiki
 
 see [egg docs][egg] for more detail.
 
+### Data
+sql data：./sql-data/*.sql
+
 ### Development
 
 ```bash

@@ -37,8 +37,8 @@ class DirectoriesController extends Controller {
     const { directoriesData } = request.body;
     /*
      * directoriesData格式(字符串):
-     * name1,page1,order1;
-     * name2,page2,order2;
+     * resource_type,name1,page1,order1;
+     * resource_type,name2,page2,order2;
      * ...
      */
     let rows = directoriesData.split(/\s*;\s*/g);
@@ -49,10 +49,11 @@ class DirectoriesController extends Controller {
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
-      if (!row[0] || !row[1] || row[2] === undefined) {
+      if (!row[1] || !row[2] || row[3] === undefined) {
         errRowNumbers.push(index + 1);
       }
-      return { name: row[0], page: row[1], order: row[2], pid: 0 };
+      // resource_type可选'division'和'scripture'
+      return { resource_type: row[0], name: row[1], page: row[2], order: row[3], pid: 0 };
     });
     if (errRowNumbers.length) {
       ctx.body = {
