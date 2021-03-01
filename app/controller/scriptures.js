@@ -65,6 +65,7 @@ class ScripturesController extends Controller {
         console.log(rowData);
         errRowNumbers.push(index + 1);
       }
+      // page,pid,number,section,page_info,link,name,part_info,author_info,version_link,version_name
       return {
         pid: parseInt(row[1]),
         name: row[6],
@@ -118,21 +119,21 @@ class ScripturesController extends Controller {
     });
   }
 
-  // async destroy() {
-  //   const ctx = this.ctx;
-  //   const {
-  //     service,
-  //     params: { id },
-  //   } = ctx;
-  //   if (!id) {
-  //     ctx.body = {
-  //       code: 0,
-  //       message: '参数错误：id必填！',
-  //     };
-  //     return;
-  //   }
-  //   ctx.body = await service.scriptures.delete({ id });
-  // }
+  async destroy() {
+    const ctx = this.ctx;
+    const {
+      service,
+      params: { id },
+    } = ctx;
+    if (!id) {
+      ctx.body = {
+        code: 0,
+        message: '参数错误：id必填！',
+      };
+      return;
+    }
+    ctx.body = await service.scriptures.delete({ id });
+  }
 }
 
 module.exports = ScripturesController;

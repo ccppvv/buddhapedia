@@ -46,7 +46,6 @@ class ResourcesController extends Controller {
       // 最后一项如果为空，丢弃
       rows.pop();
     }
-    console.log(rows.length)
     const errRowNumbers = [];
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
