@@ -18,5 +18,11 @@ module.exports = app => {
   // 详情信息
   router.resources('details', '/api/details', controller.details);
   // 描述信息
-  router.resources('descriptions', '/api/descriptions', controller.descriptions);
+  router.resources(
+    'descriptions',
+    '/api/descriptions',
+    controller.descriptions
+  );
+  // 上传文件方法
+  router.post('/api/upload', controller.upload.index);
 };
