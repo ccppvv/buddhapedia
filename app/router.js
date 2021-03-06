@@ -24,5 +24,5 @@ module.exports = app => {
     controller.descriptions
   );
   // 上传文件方法
-  router.post('/api/upload', controller.upload.index);
+  router.resources('files', '/api/files', controller.files);
 };

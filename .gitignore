@@ -3,3 +3,4 @@ logs/
 typings/
 node_modules/
 .travis.yml
+upload_files/
