@@ -48,7 +48,7 @@ class FilesController extends Controller {
         }
         const writeStream = fs.createWriteStream(target);
         await pump(stream, writeStream);
-        files.push(filename);
+        files.push(target);
       }
     }
     if (!resourceId || !resourceType || !fileType || !files.length) {
