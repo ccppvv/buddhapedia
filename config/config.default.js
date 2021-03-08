@@ -23,12 +23,7 @@ module.exports = appInfo => {
 
   config.static = {
     prefix: '/static',
-    dir: [
-      path.join(appInfo.baseDir, './upload_files/image'),
-      path.join(appInfo.baseDir, './upload_files/video'),
-      path.join(appInfo.baseDir, './upload_files/audio'),
-      path.join(appInfo.baseDir, './upload_files/other'),
-    ],
+    dir: path.join(appInfo.baseDir, './upload_files'),
     dynamic: true, // 如果当前访问的静态资源没有缓存，则缓存静态文件，和`preload`配合使用；
     preload: false,
     maxAge: 31536000, // in prod env, 0 in other envs

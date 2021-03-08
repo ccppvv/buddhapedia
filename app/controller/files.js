@@ -40,7 +40,7 @@ class FilesController extends Controller {
         const filename = stream.filename;
         const target = path.join(
           this.config.baseDir,
-          `upload_files/${fileType}`,
+          `/upload_files/${fileType}`,
           filename
         );
         if (fs.existsSync(target)) {
@@ -48,7 +48,7 @@ class FilesController extends Controller {
         }
         const writeStream = fs.createWriteStream(target);
         await pump(stream, writeStream);
-        files.push(target);
+        files.push(path.join(`upload_files/${fileType}`, filename));
       }
     }
     if (!resourceId || !resourceType || !fileType || !files.length) {
