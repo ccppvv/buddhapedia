@@ -76,7 +76,9 @@ class FilesController extends Controller {
     const {
       service,
       params: { id },
+      request: { body }
     } = ctx;
+    const { resourceType: resource_type } = body;
     if (!id) {
       ctx.body = {
         code: 0,
@@ -84,7 +86,7 @@ class FilesController extends Controller {
       };
       return;
     }
-    ctx.body = await service.files.delete({ id });
+    ctx.body = await service.files.delete({ id, resource_type});
   }
 }
 module.exports = FilesController;
