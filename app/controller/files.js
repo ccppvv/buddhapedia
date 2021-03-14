@@ -117,8 +117,9 @@ class FilesController extends Controller {
       this.ctx.logger.error('File unlink error: ', error.message);
       this.ctx.body = {
         code: -1,
-        message:` 删除文件失败，Error: ${error.message}`
+        message:`删除文件失败，Error: ${error.message}`
       };
+      return;
     }
     this.ctx.body = {
       code: 0,
