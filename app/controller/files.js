@@ -1,5 +1,6 @@
 const pump = require('mz-modules/pump');
 const path = require('path');
+const { v4: uuid  } = require('uuid')
 const fs = require('fs');
 const Controller = require('egg').Controller;
 
@@ -37,7 +38,8 @@ class FilesController extends Controller {
         if (!stream.filename) {
           continue;
         }
-        const filename = stream.filename;
+        const extname = path.extname(stream.filename);
+        const filename = `${uuid()}${extname}`;
         const target = path.join(
           this.config.baseDir,
           `/upload_files/${fileType}`,
