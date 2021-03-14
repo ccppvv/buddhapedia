@@ -90,5 +90,40 @@ class FilesController extends Controller {
     }
     ctx.body = await service.files.delete({ id, resource_type});
   }
+
+  async delete() {
+    const ctx = this.ctx;
+    const {
+      params: { filename },
+      request: { body }
+    } = ctx;
+    const { resourceType } = body;
+    if (!filename || !resourceType ) {
+      ctx.body = {
+        code: 0,
+        message: '参数错误：id必填！',
+      };
+      return;
+    }
+    try {
+      const target = path.join(
+        this.config.baseDir,
+        'upload_files',
+        resourceType,
+        filename
+      )
+      fs.unlinkSync(target);
+    } catch (error) {
+      this.ctx.logger.error('File unlink error: ', error.message);
+      this.ctx.body = {
+        code: -1,
+        message:` 删除文件失败，Error: ${error.message}`
+      };
+    }
+    this.ctx.body = {
+      code: 0,
+      message: '删除成功'
+    };
+  }
 }
 module.exports = FilesController;

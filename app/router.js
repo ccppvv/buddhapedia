@@ -25,4 +25,5 @@ module.exports = app => {
   );
   // 上传文件方法
   router.resources('files', '/api/files', controller.files);
+  router.delete('/api/files/delete/:filename', controller.files.delete);
 };
