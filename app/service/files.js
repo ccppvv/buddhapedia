@@ -46,6 +46,15 @@ class FilesService extends Service {
 
   async add(row) {
     try {
+      const item = await this.ctx.model.Files.findOne({
+        where: {
+          resource_id: row.resource_id,
+          resource_type: row.resource_type,
+        },
+      });
+      if (item) {
+        throw new Error('记录已存在，请保存文件并删除记录后重新添加!');
+      }
       await this.ctx.model.Files.create(row);
       return {
         code: 0,
@@ -68,7 +77,7 @@ class FilesService extends Service {
       if (!Object.keys(where).length) {
         throw new Error('禁止全库修改!');
       }
-      await this.ctx.model.Files.update(row, {where});
+      await this.ctx.model.Files.update(row, { where });
       return {
         code: 0,
         message: 'OK',
@@ -87,19 +96,16 @@ class FilesService extends Service {
       const items = await this.ctx.model.Files.findAll({
         where: {
           resource_id: row.id,
-          resource_type: row.resource_type
-        }
+          resource_type: row.resource_type,
+        },
       });
       if (!items || !items.length) {
         throw new Error('记录不存在!');
       }
       items.map(async (item) => {
         try {
-          item.file_names.split(',').map(fileName => {
-            const target = path.join(
-              this.config.baseDir,
-              fileName
-            )
+          item.file_names.split(',').map((fileName) => {
+            const target = path.join(this.config.baseDir, fileName);
             fs.unlinkSync(target);
           });
         } catch (error) {
