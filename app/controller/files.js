@@ -1,11 +1,18 @@
 const pump = require('mz-modules/pump');
 const path = require('path');
-const { v4: uuid  } = require('uuid')
+const { v4: uuid } = require('uuid');
 const fs = require('fs');
 const Controller = require('egg').Controller;
 
 const fileTypeList = ['image', 'video', 'audio', 'other'];
 class FilesController extends Controller {
+  async find() {
+    const ctx = this.ctx;
+    const { resourceId, resourceType } = ctx.queries;
+    const row = { resource_id: resourceId, resource_type: resourceType };
+    ctx.body = await this.ctx.service.files.findOne(row);
+  }
+
   async create() {
     const parts = this.ctx.multipart();
     const files = [];
@@ -53,7 +60,7 @@ class FilesController extends Controller {
         files.push(path.join(`upload_files/${fileType}`, filename));
       }
     }
-    if (!resourceId || !resourceType || !fileType || !files.length) {
+    if (resourceId === undefined || !resourceType || !fileType || !files.length) {
       this.ctx.body = {
         code: -1,
         message: 'resourceId、resourceType、fileType及文件必传！',
@@ -78,7 +85,7 @@ class FilesController extends Controller {
     const {
       service,
       params: { id },
-      request: { body }
+      request: { body },
     } = ctx;
     const { resourceType: resource_type } = body;
     if (!id) {
@@ -88,17 +95,17 @@ class FilesController extends Controller {
       };
       return;
     }
-    ctx.body = await service.files.delete({ id, resource_type});
+    ctx.body = await service.files.delete({ id, resource_type });
   }
 
   async delete() {
     const ctx = this.ctx;
     const {
       params: { filename },
-      request: { body }
+      request: { body },
     } = ctx;
     const { resourceType } = body;
-    if (!filename || !resourceType ) {
+    if (!filename || !resourceType) {
       ctx.body = {
         code: 0,
         message: '参数错误：id必填！',
@@ -111,19 +118,19 @@ class FilesController extends Controller {
         'upload_files',
         resourceType,
         filename
-      )
+      );
       fs.unlinkSync(target);
     } catch (error) {
       this.ctx.logger.error('File unlink error: ', error.message);
       this.ctx.body = {
         code: -1,
-        message:`删除文件失败，Error: ${error.message}`
+        message: `删除文件失败，Error: ${error.message}`,
       };
       return;
     }
     this.ctx.body = {
       code: 0,
-      message: '删除成功'
+      message: '删除成功',
     };
   }
 }

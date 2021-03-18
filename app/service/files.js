@@ -24,6 +24,26 @@ class FilesService extends Service {
     }
   }
 
+  async findOne(where) {
+    const ctx = this.ctx;
+    try {
+      const item = await ctx.model.Files.findOne({ where });
+      if (!item) {
+        throw new Error('记录不存在!');
+      }
+      return {
+        code: 0,
+        data: item.file_names.split(','),
+      };
+    } catch (error) {
+      console.log('error', error);
+      return {
+        code: -1,
+        message: error.message,
+      };
+    }
+  }
+
   async add(row) {
     try {
       await this.ctx.model.Files.create(row);
@@ -70,7 +90,6 @@ class FilesService extends Service {
           resource_type: row.resource_type
         }
       });
-      console.log('items', items);
       if (!items || !items.length) {
         throw new Error('记录不存在!');
       }
