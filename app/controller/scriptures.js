@@ -12,7 +12,7 @@ const PAGE_LIST = [
 class ScripturesController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { page, pid } = ctx.query;
+    let {page, pid} = ctx.query;
     if (!page || pid === undefined) {
       ctx.body = {
         code: -1,
@@ -27,14 +27,14 @@ class ScripturesController extends Controller {
       };
       return;
     }
-    const queries = { page, pid };
+    const queries = {page, pid};
     ctx.body = await this.ctx.service.scriptures.list(queries);
   }
 
   async create() {
     const ctx = this.ctx;
-    const { service, request } = ctx;
-    const { scripturesData } = request.body;
+    const {service, request} = ctx;
+    const {scripturesData} = request.body;
     /*
      // tibetan-scriptures,0,长阿含经,tibetan-scriptures,0001,01,p0001,https://www.fodian.net/01-ahan/01/t01n0001.zip,(22卷),〖 后秦 佛陀耶舍共竺佛念译〗,https://www.fodian.net/01-ahan/01/t01n0001-b.zip,宗教文化出版社版本;
      *  scripturesData格式(字符串):
@@ -96,8 +96,8 @@ class ScripturesController extends Controller {
     const ctx = this.ctx;
     const {
       service,
-      request: { body },
-      params: { id },
+      request: {body},
+      params: {id},
     } = ctx;
 
     if (!body.page) {
@@ -107,15 +107,15 @@ class ScripturesController extends Controller {
       };
       return;
     }
-    ctx.body = await service.scriptures.update(body, { id });
+    ctx.body = await service.scriptures.update(body, {id});
   }
 
   async show() {
     const ctx = this.ctx;
-    const { service, params } = ctx;
-    const { id } = params;
+    const {service, params} = ctx;
+    const {id} = params;
     ctx.body = await service.scriptures.findOne({
-      where: { id },
+      id,
     });
   }
 
@@ -123,7 +123,7 @@ class ScripturesController extends Controller {
     const ctx = this.ctx;
     const {
       service,
-      params: { id },
+      params: {id},
     } = ctx;
     if (!id) {
       ctx.body = {
@@ -132,7 +132,7 @@ class ScripturesController extends Controller {
       };
       return;
     }
-    ctx.body = await service.scriptures.delete({ id });
+    ctx.body = await service.scriptures.delete({id});
   }
 }
 

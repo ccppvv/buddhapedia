@@ -14,7 +14,9 @@
     "egg-sequelize": "^5.2.2",
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   },
   "devDependencies": {
     "autod": "^3.0.1",
