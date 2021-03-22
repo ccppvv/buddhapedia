@@ -27,8 +27,13 @@ module.exports = (app) => {
         allowNull: false,
         defaultValue: '',
       },
-      file_names: {
-        type: DataTypes.STRING(4096),
+      file_name: {
+        type: DataTypes.STRING(1024),
+        allowNull: false,
+        defaultValue: '',
+      },
+      file_hash: {
+        type: DataTypes.STRING(128),
         allowNull: false,
         defaultValue: '',
       },

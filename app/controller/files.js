@@ -1,6 +1,6 @@
 const pump = require('mz-modules/pump');
 const path = require('path');
-const { v4: uuid } = require('uuid');
+const md5 = require('md5');
 const fs = require('fs');
 const Controller = require('egg').Controller;
 
@@ -10,16 +10,17 @@ class FilesController extends Controller {
     const ctx = this.ctx;
     const { resourceId, resourceType } = ctx.queries;
     const row = { resource_id: resourceId, resource_type: resourceType };
-    ctx.body = await this.ctx.service.files.findOne(row);
+    ctx.body = await this.ctx.service.files.find(row);
+    return ctx.body;
   }
 
   async create() {
     const parts = this.ctx.multipart();
-    const files = [];
     let fileType = '';
     let resourceType = '';
     let resourceId = '';
 
+    const files = [];
     let stream;
     while ((stream = await parts()) != null) {
       if (stream.length) {
@@ -46,36 +47,55 @@ class FilesController extends Controller {
           continue;
         }
         const extname = path.extname(stream.filename);
-        const filename = `${uuid()}${extname}`;
+        const filename = `${md5(stream.filename)}${extname}`;
         const target = path.join(
           this.config.baseDir,
           `/upload_files/${fileType}`,
           filename
         );
+        files.push(filename);
         if (fs.existsSync(target)) {
           fs.unlinkSync(target);
         }
         const writeStream = fs.createWriteStream(target);
         await pump(stream, writeStream);
-        files.push(path.join(`upload_files/${fileType}`, filename));
+        try {
+          await this.ctx.service.files.add({
+            resource_id: resourceId,
+            resource_type: resourceType,
+            file_type: fileType,
+            file_name: stream.filename,
+            file_hash: filename,
+          });
+        } catch (error) {
+          this.ctx.body = {
+            code: -1,
+            error: error.message,
+          };
+          return;
+        }
       }
     }
-    if (resourceId === undefined || !resourceType || !fileType || !files.length) {
+    if (
+      resourceId === undefined ||
+      !resourceType ||
+      !fileType ||
+      !files.length
+    ) {
       this.ctx.body = {
         code: -1,
         message: 'resourceId、resourceType、fileType及文件必传！',
       };
       return;
     }
-    await this.ctx.service.files.add({
-      resource_id: resourceId,
-      resource_type: resourceType,
-      file_type: fileType,
-      file_names: files.join(','),
-    });
+    const insertedFiles = await this.ctx.service.files
+      .find({
+        resource_id: resourceId,
+        resource_type: resourceType,
+      });
     this.ctx.body = {
       code: 0,
-      data: files,
+      data: insertedFiles,
       message: '上传文件成功',
     };
   }
@@ -104,11 +124,11 @@ class FilesController extends Controller {
       params: { filename },
       request: { body },
     } = ctx;
-    const { resourceType } = body;
-    if (!filename || !resourceType) {
+    const { fileType } = body;
+    if (!filename || !fileType) {
       ctx.body = {
         code: 0,
-        message: '参数错误：id必填！',
+        message: '参数错误：filename/fileType字段必填！',
       };
       return;
     }
@@ -116,10 +136,11 @@ class FilesController extends Controller {
       const target = path.join(
         this.config.baseDir,
         'upload_files',
-        resourceType,
+        fileType,
         filename
       );
       fs.unlinkSync(target);
+      this.ctx.service.files.delete({file_hash: filename, fileType})
     } catch (error) {
       this.ctx.logger.error('File unlink error: ', error.message);
       this.ctx.body = {
