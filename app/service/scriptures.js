@@ -79,37 +79,87 @@ class ScripturesService extends Service {
     }
   }
 
-  async findOne({id}) {
-    if (!id.includes('_')) {
-      return {
-        code: -1,
-        message: 'id格式不正确, 必须为T${number}_${section}的格式!'
-      };
+  getCapital(link) {
+    // if (juan.endsWith('a')
+    //   || juan.endsWith('b')
+    //   || juan.endsWith('c')
+    //   || juan.endsWith('d')
+    //   || juan.endsWith('e')
+    //   || juan.endsWith('f')
+    //   || juan.endsWith('g')
+    //   || juan.endsWith('h')
+    // ) {
+    //   if (juan.includes('-') && juan.length !== 1) {
+
+    //   }
+    // }
+    const lastSlashIndex = link.lastIndexOf('/');
+    return link[lastSlashIndex + 1].toUpperCase();
+  }
+
+  getJuanInfo(juanInfo) {
+    if (!juanInfo) {
+      return 1;
     }
-    const parts = id.split('_');
-    if (parts[1].length === 2) {
-      parts[1] = `0${parts[1]}`;
+    if (juanInfo === '-') {
+      return 1;
     }
-    if (parts[1].length === 1) {
-      parts[1] = `00${parts[1]}`;
+    const rest = juanInfo
+      .replace(/第/g, '')
+      .replace(/卷/g, '')
+      .replace(/（/g, '')
+      .replace(/）/g, '')
+      .replace(/\(/g, '')
+      .replace(/\)/g, '');
+    if (rest.includes('-') && rest.length > 1) {
+      return rest.split('-')[0];
     }
-    if (parts[1].length > 3) {
-      return {
-        code: -1,
-        message: 'id格式不正确, 请联系admin@fodian.net或ccppvv@hotmail.com获取支持!'
-      };
-    }
+    return rest;
+  }
+
+  async findOne({id, juan = 1}) {
     try {
-      const optionsRequest = {
+      const item = await this.ctx.model.Scriptures.findByPk(id);
+      if (!item) {
+        throw new Error('记录不存在!');
+      }
+      const {link, part_info: juanInfo} = item;
+      const juan = this.getJuanInfo(juanInfo);
+      console.log('juanInfo', item, juanInfo, juan);
+      const capital = this.getCapital(link);
+      const getUrl = (item, juan) => {
+        const upper = `http://cbdata.dila.edu.tw/v1.2/juans?work=${capital + item.number.toUpperCase()}&juan=${juan}`
+        const lower = `http://cbdata.dila.edu.tw/v1.2/juans?work=${capital + item.number.toLowerCase()}&juan=${juan}`
+        return {
+          upper,
+          lower
+        };
+      };
+      const upperOptionsRequest = {
         method: 'GET',
-        url: `https://api.cbetaonline.cn/download/html/${parts[0]}_${parts[1]}`,
+        url: getUrl(item, juan).upper,
         headers: {}
       };
+      const lowerOptionsRequest = {
+        method: 'GET',
+        url: getUrl(item, juan).lower,
+        headers: {}
+      };
+      console.log(upperOptionsRequest, lowerOptionsRequest)
 
-      const res = await request(optionsRequest);
+      let ures = await request(upperOptionsRequest);
+      let lres = await request(lowerOptionsRequest);
+      ures = JSON.parse(ures);
+      lres = JSON.parse(lres);
+      if (ures.num_found) {
+        return {
+          code: 0,
+          data: ures.results[0]
+        };
+      }
       return {
         code: 0,
-        data: res,
+        data: lres.results && lres.results[0],
       };
     } catch (error) {
       console.log('error', error);
