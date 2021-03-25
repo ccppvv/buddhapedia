@@ -97,7 +97,20 @@ class ScripturesService extends Service {
     return link[lastSlashIndex + 1].toUpperCase();
   }
 
-  getJuanInfo(juanInfo) {
+  fillJuanInfo = (juan) => {
+    if (juan.length === 1) {
+      return `00${juan}`;
+    }
+    if (juan.length === 2) {
+      return `0${juan}`;
+    }
+    if (juan.length === 3) {
+      return juan;
+    }
+    return '';
+  }
+
+  getJuanInfo = (juanInfo) => {
     if (!juanInfo) {
       return 1;
     }
@@ -117,55 +130,46 @@ class ScripturesService extends Service {
     return rest;
   }
 
-  async findOne({id, juan = 1}) {
+  async findOne({id, juan = '1'}) {
+    let url = '';
+    let file = '';
     try {
       const item = await this.ctx.model.Scriptures.findByPk(id);
+      file = item.link;
       if (!item) {
         throw new Error('记录不存在!');
       }
-      const {link, part_info: juanInfo} = item;
-      const juan = this.getJuanInfo(juanInfo);
-      console.log('juanInfo', item, juanInfo, juan);
-      const capital = this.getCapital(link);
-      const getUrl = (item, juan) => {
-        const upper = `http://cbdata.dila.edu.tw/v1.2/juans?work=${capital + item.number.toUpperCase()}&juan=${juan}`
-        const lower = `http://cbdata.dila.edu.tw/v1.2/juans?work=${capital + item.number.toLowerCase()}&juan=${juan}`
-        return {
-          upper,
-          lower
-        };
-      };
-      const upperOptionsRequest = {
-        method: 'GET',
-        url: getUrl(item, juan).upper,
-        headers: {}
-      };
-      const lowerOptionsRequest = {
-        method: 'GET',
-        url: getUrl(item, juan).lower,
-        headers: {}
-      };
-      console.log(upperOptionsRequest, lowerOptionsRequest)
-
-      let ures = await request(upperOptionsRequest);
-      let lres = await request(lowerOptionsRequest);
-      ures = JSON.parse(ures);
-      lres = JSON.parse(lres);
-      if (ures.num_found) {
-        return {
-          code: 0,
-          data: ures.results[0]
-        };
+      const {link, part_info: srcJuan} = item;
+      const juanInfo = this.fillJuanInfo(juan);
+      console.log('juan', juan);
+      if (!juanInfo) {
+        throw new Error('卷信息必须为数字!');
       }
+      // console.log('juanInfo', item, juanInfo, juan);
+      const capital = this.getCapital(link);
+      url = `http://api.cbetaonline.cn/download/html/${capital + item.number.toUpperCase()}_${juanInfo}`;
+      const optionsRequest = {
+        method: 'GET',
+        url,
+        headers: {}
+      };
+
+      const res = await request(optionsRequest);
       return {
         code: 0,
-        data: lres.results && lres.results[0],
+        data: res,
+        url: `http://api.cbetaonline.cn/download/html/${capital + item.number.toUpperCase()}_${juanInfo}`,
+        juan: this.getJuanInfo(srcJuan),
+        file
       };
     } catch (error) {
       console.log('error', error);
       return {
         code: -1,
         message: error.message,
+        url,
+        file,
+        data: ''
       };
     }
   }
