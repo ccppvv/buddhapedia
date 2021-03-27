@@ -27,4 +27,19 @@ module.exports = app => {
   router.delete('/api/files/delete/:filename', controller.files.delete);
   router.resources('files', '/api/files', controller.files);
   router.get('/api/files/filenames', controller.files.find);
+  router.resources(
+    'dictionary-dicts',
+    '/api/dicts',
+    controller.dicts
+  );
+  router.resources(
+    'dictionary-words',
+    '/api/words',
+    controller.words
+  );
+  router.resources(
+    'dictionary-view-words',
+    '/api/viewwords',
+    controller.viewwords
+  );
 };

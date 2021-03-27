@@ -80,21 +80,15 @@ class ScripturesService extends Service {
   }
 
   getCapital(link) {
-    // if (juan.endsWith('a')
-    //   || juan.endsWith('b')
-    //   || juan.endsWith('c')
-    //   || juan.endsWith('d')
-    //   || juan.endsWith('e')
-    //   || juan.endsWith('f')
-    //   || juan.endsWith('g')
-    //   || juan.endsWith('h')
-    // ) {
-    //   if (juan.includes('-') && juan.length !== 1) {
-
-    //   }
-    // }
     const lastSlashIndex = link.lastIndexOf('/');
-    return link[lastSlashIndex + 1].toUpperCase();
+    const ret = link[lastSlashIndex + 1].toUpperCase();
+    if (ret === 'W') {
+      return 'ZW';
+    }
+    if (ret === 'H') {
+      return 'ZS';
+    }
+    return ret;
   }
 
   fillJuanInfo = (juan) => {
