@@ -21,10 +21,7 @@ class WordsService extends Service {
         where,
         include: [{ model: this.ctx.model.Dicts, attributes: ['name'] }]
       });
-      let count = items.length;
-      if (!Object.keys(where).length) {
-        count = await this.ctx.model.Words.count();
-      }
+      const count = await this.ctx.model.Words.count({where});
       return {
         code: 0,
         total: count,

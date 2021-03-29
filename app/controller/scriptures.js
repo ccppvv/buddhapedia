@@ -112,10 +112,12 @@ class ScripturesController extends Controller {
 
   async show() {
     const ctx = this.ctx;
-    const {service, params} = ctx;
+    const {service, params, queries} = ctx;
     const {id} = params;
+    const {juan} = queries;
     ctx.body = await service.scriptures.findOne({
       id,
+      juan
     });
   }
 
