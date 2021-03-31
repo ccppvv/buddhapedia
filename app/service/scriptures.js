@@ -88,6 +88,9 @@ class ScripturesService extends Service {
     if (ret === 'H') {
       return 'ZS';
     }
+    if (ret === 'X') {
+      return '';
+    }
     return ret;
   }
 
