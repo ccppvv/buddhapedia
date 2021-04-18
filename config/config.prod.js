@@ -25,16 +25,14 @@ module.exports = appInfo => {
     sequelize: {
       datasources: [
         {
-          // db配置
-          dialect: 'mysql',
+          dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+          username: 'nptmysqljtuser',
+          password: 'Mdtw*C1Z4eAj',
+          host: '222.76.219.103',
+          port: 3306,
           delegate: 'model',
           baseDir: 'model',
-          host: '10.59.216.87',
-          port: '6440',
-          username: 'root',
-          password: 'yGmsS52Q6#',
-          database: 'im',
-          dateStrings: 'DATETIME',
+          database: 'buddhapedia',
         },
       ],
     },

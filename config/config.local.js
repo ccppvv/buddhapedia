@@ -14,16 +14,28 @@ module.exports = {
   },
   sequelize: {
     datasources: [
+      // prod
       {
-        dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-        username: 'root',
-        password: LOCAL_PWD,
-        host: LOCAL_IP,
-        port: 3306,
-        delegate: 'model',
-        baseDir: 'model',
-        database: 'buddhapedia',
-      },
+          dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+          username: 'nptmysqljtuser',
+          password: 'Mdtw*C1Z4eAj',
+          host: '222.76.219.103',
+          port: 3306,
+          delegate: 'model',
+          baseDir: 'model',
+          database: 'buddhapedia',
+      }
+      // local
+      // {
+      //   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      //   username: 'root',
+      //   password: LOCAL_PWD,
+      //   host: LOCAL_IP,
+      //   port: 3306,
+      //   delegate: 'model',
+      //   baseDir: 'model',
+      //   database: 'buddhapedia',
+      // },
     ],
   },
 };

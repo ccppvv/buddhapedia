@@ -7,7 +7,6 @@
     "declarations": true
   },
   "dependencies": {
-    "await-stream-ready": "^1.0.1",
     "dayjs": "^1.9.8",
     "egg": "^2.15.1",
     "egg-scripts": "^2.11.0",
@@ -33,7 +32,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-buddhapedia",
+    "start": "pm2 start server.js --name buddhapedia",
     "stop": "egg-scripts stop --title=egg-server-buddhapedia",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
