@@ -50,9 +50,9 @@ class ResourcesController extends Controller {
     rows = rows.map((rowData, index) => {
       const row = rowData.trim().split(/\s*,\s*/g);
       if (!row[0] || row[1] === undefined || !row[2] || !row[3] || !PAGE_LIST.includes(row[0])) {
+        console.log(row[0])
         errRowNumbers.push(index + 1);
       }
-      console.log(row[0])
       return { pid: parseInt(row[1]), name: row[3], page: row[0], order: index, link: row[2], tip: row[4] || '' };
     });
     if (errRowNumbers.length) {
