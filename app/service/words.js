@@ -2,7 +2,7 @@
 const Service = require('egg').Service;
 
 class WordsService extends Service {
-  async list({ word, pageSize, pageIndex }) {
+  async list({ word, dictid, pageSize, pageIndex }) {
     const ctx = this.ctx;
     const { Op } = this.app.Sequelize;
     try {
@@ -13,6 +13,10 @@ class WordsService extends Service {
         };
       }
 
+      if (dictid !== undefined) {
+        where.dictid = dictid;
+      }
+
       const offset = (pageIndex - 1) * pageSize;
       const items = await ctx.model.Words.findAll({
         limit: pageSize,
@@ -21,7 +25,7 @@ class WordsService extends Service {
         where,
         include: [{ model: this.ctx.model.Dicts, attributes: ['name'] }]
       });
-      const count = await this.ctx.model.Words.count({where});
+      const count = await this.ctx.model.Words.count({ where });
       return {
         code: 0,
         total: count,
@@ -31,7 +35,7 @@ class WordsService extends Service {
             ...data,
             content: data.content.replace('\\n', '')
           });
-        })
+        }),
       };
     } catch (error) {
       return {
