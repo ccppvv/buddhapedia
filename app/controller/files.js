@@ -2,6 +2,7 @@ const pump = require('mz-modules/pump');
 const path = require('path');
 const md5 = require('md5');
 const fs = require('fs');
+const shell = require('shelljs');
 const Controller = require('egg').Controller;
 
 const fileTypeList = ['image', 'video', 'audio', 'other'];
@@ -19,6 +20,7 @@ class FilesController extends Controller {
     let fileType = '';
     let resourceType = '';
     let resourceId = '';
+    let dirSeq = '';
 
     const files = [];
     let stream;
@@ -40,6 +42,8 @@ class FilesController extends Controller {
           resourceType = fieldValue;
         } else if (fieldName === 'resourceId') {
           resourceId = fieldValue;
+        } else if (fieldName === 'fileRank') {
+          dirSeq = fieldValue;
         }
         continue;
       } else {
@@ -48,12 +52,16 @@ class FilesController extends Controller {
         }
         const extname = path.extname(stream.filename);
         const filename = `${md5(stream.filename)}${extname}`;
-        const target = path.join(
+        const fullPath = path.join(
           this.config.baseDir,
           `/upload_files/${fileType}`,
-          filename
+          dirSeq.split(',').join('/'),
         );
         files.push(filename);
+        if (!fs.existsSync(fullPath)) {
+          shell.mkdir('-p', fullPath);
+        }
+        const target = path.join(fullPath, filename);
         if (fs.existsSync(target)) {
           fs.unlinkSync(target);
         }
@@ -65,7 +73,11 @@ class FilesController extends Controller {
             resource_type: resourceType,
             file_type: fileType,
             file_name: stream.filename,
-            file_hash: filename,
+            file_hash: path.join(
+              `/upload_files/${fileType}`,
+              dirSeq.split(',').join('/'),
+              filename
+            ),
           });
         } catch (error) {
           this.ctx.body = {
