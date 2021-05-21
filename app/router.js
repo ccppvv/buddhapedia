@@ -23,8 +23,8 @@ module.exports = app => {
     '/api/descriptions',
     controller.descriptions
   );
-  // 上传文件方法
-  router.delete('/api/files/delete/:filename', controller.files.delete);
+  // 文件相关接口
+  router.delete('/api/files/delete', controller.files.delete);
   router.resources('files', '/api/files', controller.files);
   router.get('/api/files/filenames', controller.files.find);
   router.resources(

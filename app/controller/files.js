@@ -133,10 +133,10 @@ class FilesController extends Controller {
   async delete() {
     const ctx = this.ctx;
     const {
-      params: { filename },
       request: { body },
+      service,
     } = ctx;
-    const { fileType } = body;
+    const { fileType, filename } = body;
     if (!filename || !fileType) {
       ctx.body = {
         code: 0,
@@ -145,14 +145,17 @@ class FilesController extends Controller {
       return;
     }
     try {
-      const target = path.join(
+      let target = path.join(
         this.config.baseDir,
-        'upload_files',
-        fileType,
         filename
       );
+      target = target.replace(`/static/${fileType}`, '');
       fs.unlinkSync(target);
-      this.ctx.service.files.delete({file_hash: filename, fileType})
+      await service.files.delete({ file_hash: filename.replace(`/static/${fileType}`, '') });
+      this.ctx.body = {
+        code: 0,
+        message: '删除成功',
+      };
     } catch (error) {
       this.ctx.logger.error('File unlink error: ', error.message);
       this.ctx.body = {
@@ -161,10 +164,6 @@ class FilesController extends Controller {
       };
       return;
     }
-    this.ctx.body = {
-      code: 0,
-      message: '删除成功',
-    };
   }
 }
 module.exports = FilesController;
