@@ -20,7 +20,7 @@ module.exports = {
           username: 'nptmysqljtuser',
           password: 'Mdtw*C1Z4eAj',
           host: '222.76.219.103',
-          port: 3306,
+          port: 33068,
           delegate: 'model',
           baseDir: 'model',
           database: 'buddhapedia',
