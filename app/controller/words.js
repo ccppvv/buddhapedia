@@ -5,7 +5,8 @@ const Controller = require('egg').Controller;
 class WordsController extends Controller {
   async index() {
     const ctx = this.ctx;
-    let { word, dictId, pageSize = 1, pageIndex = 20 } = ctx.query;
+    // type: 搜索选项，all、title、content
+    let { word, dictId, pageSize = 1, pageIndex = 20, type = 'all' } = ctx.query;
     pageSize = parseInt(pageSize);
     pageIndex = parseInt(pageIndex);
     if (pageSize <= 0 || isNaN(parseInt(pageSize)) || pageIndex <= 0) {
@@ -15,7 +16,7 @@ class WordsController extends Controller {
       };
       return;
     }
-    const queries = { word, dictid: dictId, pageSize, pageIndex };
+    const queries = { word, dictid: dictId, pageSize, pageIndex, type };
     ctx.body = await this.ctx.service.words.list(queries);
   }
 }

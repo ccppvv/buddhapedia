@@ -2,17 +2,30 @@
 const Service = require('egg').Service;
 
 class WordsService extends Service {
-  async list({ word, dictid, pageSize, pageIndex }) {
+  async list({ word, dictid, pageSize, pageIndex, type }) {
     const ctx = this.ctx;
     const { Op } = this.app.Sequelize;
     try {
       const where = {};
-      if (word) {
+      if (type === 'title') {
         where.word = {
           [Op.like]: `%${word}%`
         };
+      } else if (type === 'content') {
+        where.content = {
+          [Op.like]: `%${word}%`
+        };
+      } else if (type === 'all') {
+        where[Op.or] = [{
+          word: {
+            [Op.like]: `%${word}%`
+          }
+        }, {
+          content: {
+            [Op.like]: `%${word}%`
+          }
+        }]
       }
-
       if (dictid !== undefined) {
         where.dictid = dictid;
       }
