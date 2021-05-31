@@ -10,9 +10,11 @@ class ScripturesService extends Service {
         order: [['number']],
         where,
       });
+      const division = await ctx.model.Divisions.findByPk(where.pid);
       return {
         code: 0,
         data: items,
+        wholeLink: division ? division.whole_link : ''
       };
     } catch (error) {
       console.log('error', error);
