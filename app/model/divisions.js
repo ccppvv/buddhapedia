@@ -50,6 +50,11 @@ module.exports = app => {
         type: DataTypes.STRING(32),
         defaultValue: '',
         allowNull: false,
+      },
+      whole_link: {
+        type: DataTypes.STRING(4096),
+        defaultValue: '',
+        allowNull: true,
       }
     },
     {
