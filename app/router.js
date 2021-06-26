@@ -6,6 +6,9 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
+  router.post('/api/login', controller.users.login);
+  router.post('/api/resetPwd', controller.users.resetPwd);
+  router.post('/api/sendVerifyCode', controller.users.sendVerifyCode);
   router.resources('express', '/api/home/express', controller.home.express);
   // 一级目录
   router.resources('directories', '/api/directories', controller.directories);
